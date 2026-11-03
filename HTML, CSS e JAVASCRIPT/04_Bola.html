@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reposicionando a Bola</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #eeeeee;
+        }
+
+        #tabuleiro {
+            width: 600px;
+            height: 300px;
+            position: relative;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 4px solid black;
+            background-color: lightblue;
+        }
+
+        #bola {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 0;
+            top: 135px;
+
+            box-sizing: border-box;
+            border: 2px solid black;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        #mensagem {
+            min-height: 25px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Movimentação da Bola</h1>
+
+    <p>
+        A bola será reposicionada 1 segundo após chegar ao final.
+    </p>
+
+    <div id="tabuleiro">
+        <div id="bola"></div>
+    </div>
+
+    <p id="mensagem">
+        Clique no botão para iniciar.
+    </p>
+
+    <button id="btnIniciar">
+        Iniciar movimento
+    </button>
+
+    <script>
+        const bola = document.getElementById("bola");
+        const mensagem = document.getElementById("mensagem");
+        const btnIniciar = document.getElementById("btnIniciar");
+
+        let posicaoX = 0;
+        let intervalo;
+
+        btnIniciar.addEventListener(
+            "click",
+            iniciarMovimento
+        );
+
+        function iniciarMovimento() {
+            posicaoX = 0;
+
+            bola.style.left = posicaoX + "px";
+
+            btnIniciar.disabled = true;
+
+            mensagem.innerText =
+                "A bola está em movimento.";
+
+            intervalo = setInterval(
+                moverBola,
+                20
+            );
+        }
+
+        function moverBola() {
+            posicaoX = posicaoX + 4;
+            bola.style.left =  posicaoX + "px";
+
+            if (posicaoX >= 570) {
+                clearInterval(intervalo);
+                posicaoX = 570;
+                bola.style.left = posicaoX + "px";
+
+                mensagem.innerText =
+                    "A bola chegou ao final. Aguarde...";
+
+                setTimeout(reposicionarBola,1000);
+            }
+        }
+
+        function reposicionarBola() {
+            posicaoX = 0;
+            bola.style.left = posicaoX + "px";
+            mensagem.innerText =  "A bola retornou à posição inicial.";
+            btnIniciar.disabled = false;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo preventDefault</title>
+</head>
+<body>
+
+    <h1>Validação de formulário</h1>
+
+    <form id="formulario" action="sucesso.html">
+        <label for="email">E-mail:</label>
+        <input type="text" id="email">
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="mensagem"></p>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const email = document.getElementById("email");
+        const mensagem = document.getElementById("mensagem");
+
+        formulario.addEventListener("submit", validarFormulario);
+
+        function validarFormulario(evento) {
+            if (!email.value.includes("@")) {
+                evento.preventDefault();
+
+                mensagem.innerText = "E-mail inválido. O formulário não foi enviado.";
+                mensagem.style.color = "red";
+                email.style.borderColor = "red";
+            } else {
+                mensagem.innerText = "E-mail válido. O formulário será enviado.";
+                mensagem.style.color = "green";
+            }
+        }
+    </script>
+
+</body>
+</html>

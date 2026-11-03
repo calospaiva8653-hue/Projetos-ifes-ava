@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Controlando Estilos com Eventos</title>
+    <script src="s31.js" defer></script>
+</head>
+<body>
+    <h1>Controlando Estilos com Eventos</h1>
+    <div id="caixa">
+        Este texto será alterado pelos controles abaixo.
+    </div>
+       <br>
+    <label>
+        <input type="checkbox" id="chkDestaque">
+        Ativar destaque
+    </label>
+    <br>
+    <br>
+    <label for="corTexto">Cor do texto:</label>
+    <select id="corTexto">
+        <option value="black">Preto</option>
+        <option value="red">Vermelho</option>
+        <option value="blue">Azul</option>
+        <option value="green">Verde</option>
+    </select>
+    <br>
+    <br>
+    <label for="tamanhoFonte">Tamanho da fonte:</label>
+    <input type="range" id="tamanhoFonte" min="16" max="40" value="20">
+    <span id="valorFonte">20px</span>
+    <br>
+    <br>
+    <button id="btnRestaurar">Restaurar padrão</button>
+
+</body>
+</html>
+
