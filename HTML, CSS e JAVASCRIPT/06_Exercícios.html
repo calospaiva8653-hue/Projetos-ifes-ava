@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            justify-content: center;
+            background-color: antiquewhite;
+            width: 100%;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+        }
+        .container{
+            background-color: aliceblue;
+            border-radius: 14px;
+            max-width: 600px;
+            width: 100%;
+        }
+        .dentro{
+            padding: 18px;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            
+        <div class="dentro">
+            <h1 style="margin-left: 5px;">Exercício 1 - Lanche Vitalício</h1>
+            <p>Idade atual</p>
+            <input type="number" id="iatual">
+            <p>Idade máxima</p>
+            <input type="number" id="imaxima">
+            <p>Lanches por dia</p>
+            <input type="number" id="ilanches">
+            <p>Resultado:</p>
+            <textarea id="resultado" rows="4" cols="50"></textarea>
+            <button onclick="exercicio1()">Calcular</button>
+
+            <h1>Exercício 2 - Propriedades de um Círculo </h1>
+            <p>Informe o Raio</p>
+            <input type="number" id="raio">
+            <button  onclick="exercicio2()">Calcular</button>
+            <textarea id="resultado2" rows="3" cols="50"></textarea>
+
+            <h1>Exercício 3 - Tradutor de Olá Mundo</h1>
+            <p><strong>Escolha um idioma</strong></p>
+            <select id="idioma">
+                <option value="pt">Português</option>
+                <option value="fr">Francês</option>
+                <option value="es">Espanhol</option>
+            </select><br><br>
+            <button onclick="exercicio3()">Traduzir</button>
+            <textarea id="resultado3" rows="3" cols="50"></textarea>
+
+            <h1>Exercício 4 - Impressão de Padão</h1>
+            <p>Ao clicar no botão, o padrão sera exibido</p>
+            <button onclick="exercicio4()">Gerar Padrão</button>
+            <textarea id="resultado4" rows="8" cols="50"></textarea>
+
+            <h1>Exercício 5 - Array de Escolhas</h1>
+            <p>Ao clicar no botão o programa exibirá frases com base em um array de escolhas</p>
+            <button onclick="exercicio5()">Executar</button>
+            <textarea id="resultado5" rows="4" cols="50" style="border-radius: 0;"></textarea>
+
+            <h1>Exercício 6 - Map com Quadrado de Valores</h1>
+            <p>Imprima o quadrado de cada número do array [1,2,3,4,5].</p>
+            <button onclick="exercicio6()">Executar</button>
+            <textarea id="resultado6" rows="4" cols="50" style="border-radius: 0;"></textarea>
+
+            <h2>Exercício 7 - Conversão para Números Romanos</h2>
+            <p><strong>Digite um numero de 1 a 10:</strong></p>
+            <input type="number" id="inum">
+            <button onclick="exercicio7()">Converter</button>
+            <textarea id="resultado7" rows="2" cols="50"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function exercicio1() {
+            let atual = Number(document.getElementById('iatual').value);
+            let maxima = Number (document.getElementById('imaxima').value);
+            let porDia = Number(document.getElementById('ilanches').value);
+            let total = (maxima - atual) * 365 * porDia;
+            
+            document.getElementById('resultado').value = "Você precisará de " + total + " lanches para durar até a velhice de " + maxima + " anos.";
+        }
+
+        function exercicio2() {
+            let Raio = Number(document.getElementById('raio').value);
+            let circ = Number (2 * Math.PI * Raio);
+            let area = Number (Math.PI * (Raio * Raio));
+
+            document.getElementById('resultado2').value = "A circunferência tem " + circ.toFixed(2) + "\nA área " + area.toFixed(2);
+        }
+
+        function exercicio3() {
+            let Idioma = document.getElementById('idioma').value;
+            let msg = "";
+            if(Idioma == "fr") {
+                msg = "Bonjour tout le monde!";
+
+            }else if (Idioma == "es") {
+
+                msg = "¡Hola, Mundo!";
+            }else if (Idioma == "pt"){
+                msg = "Olá, Mundo!"
+
+            }else {
+                msg = "Hello, World!";
+            }
+
+            document.getElementById('resultado3').value = msg;
+        }
+        
+        function exercicio4() {
+            let total = "";
+            for (let i = 1; i <= 8; i++) {
+                let linha = "";
+                for (let j = 1; j <= i; j++) {
+                    linha += j;
+            }
+                total += linha + "\n";
+            }
+            document.getElementById('resultado4').value = total;
+        }
+
+        function exercicio5() {
+            let array = ["azul", "vermelho", "verde"];
+            let texto = "";
+            for (let i = 0; i < array.length; i++) {
+                texto = texto + "Minha escolha " + (i + 1) + " é " + array[i] + ".\n";
+            }
+            document.getElementById('resultado5').value = texto;
+        }
+
+        function exercicio6() {
+            const numeros = [1,  2, 3, 4, 5];
+            const quadrado = numeros.map(n => n*n)
+
+            document.getElementById('resultado6').value = quadrado
+        }
+
+        function exercicio7() {
+            let numcon = Number (document.getElementById('inum').value);
+            let romanos = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
+            document.getElementById('resultado7').value = romanos[numcon-1]
+        }
+    </script>
+</body>
+</html>
